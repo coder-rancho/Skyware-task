@@ -1,10 +1,14 @@
-const express = require('express')
+import express from 'express'
+import users from './users.mjs'
+console.log(users)
 const app = express()
 
 app.use(express.static('public'))
+app.use(express.urlencoded({extended: true}))
 
 app.listen(3000)
 
-app.get('/', (req, res) => {
-    res.send('listening...')
+app.post('/login', (req, res) => {
+    console.log(req.body)
+    res.send('logged in')
 })
